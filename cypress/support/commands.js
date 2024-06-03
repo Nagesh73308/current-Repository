@@ -23,3 +23,18 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import Tesseract from 'tesseract.js';
+Cypress.Commands.add('extractTextFromImage', (imageSelector) => {
+    cy.get(imageSelector).then($img => {
+        const imageUrl = $img.attr('src');
+        return new Cypress.Promise((resolve, reject) => {
+            Tesseract.recognize(imageUrl)
+                .then(({ data: { text } }) => {
+                    resolve(text);
+                })
+                .catch(error => {
+                    reject(error);
+                });
+        });
+    });
+});

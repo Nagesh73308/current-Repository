@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cypress": "^13.6.2"
+    "cypress": "^13.6.2",
+    "tesseract.js": "^5.1.0"
   }
 }
